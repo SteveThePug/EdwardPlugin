@@ -1,0 +1,10 @@
+name: EdwardPlugin
+version: '${version}'
+main: me.stevethepug.edwardplugin.EdwardPlugin
+api-version: 1.19
+description: Edward is an amazing individual, what an amazing man, I wish he could be with me at all times of the year. Also, all due credit to the man formerly known as James for enrolling me on the course of the minecraft plugins. Glory to Artozka
+commands:
+  funny:
+    description: This is going to be bare funny
+    usage: /<command>
+    permission: EdwardPlugin.yourcommandpermission
