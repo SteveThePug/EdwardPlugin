@@ -1,4 +1,4 @@
-package me.stevethepug.edwardplugin;
+package me.stevethepug.edwardplugin.cmd;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;

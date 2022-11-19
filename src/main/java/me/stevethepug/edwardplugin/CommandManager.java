@@ -1,6 +1,8 @@
 package me.stevethepug.edwardplugin;
 
+import me.stevethepug.edwardplugin.cmd.BaseCommand;
 import me.stevethepug.edwardplugin.cmd.FunnyEffect;
+import me.stevethepug.edwardplugin.cmd.TntCommand;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
