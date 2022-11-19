@@ -1,9 +1,6 @@
 package me.stevethepug.edwardplugin;
 
-import me.stevethepug.edwardplugin.cmd.BaseCommand;
-import me.stevethepug.edwardplugin.cmd.FunnyEffect;
-import me.stevethepug.edwardplugin.cmd.Tnt;
-import me.stevethepug.edwardplugin.cmd.Vanish;
+import me.stevethepug.edwardplugin.cmd.*;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -11,18 +8,25 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 public class CommandManager implements CommandExecutor
 {
     EdwardPlugin plugin;
 
-    private ArrayList<BaseCommand> commands = new ArrayList<>();
+    SetTime setTime;
+
+    private ArrayList<BaseCommand> trollCommands = new ArrayList<>();
+    private ArrayList<BaseCommand> timelockCommands = new ArrayList<>();
 
     public CommandManager(EdwardPlugin instance)
     {
         plugin = instance;
-        commands.add(new Tnt());
-        commands.add(new FunnyEffect(instance));
+        trollCommands.add(new Tnt());
+        trollCommands.add(new FunnyEffect(plugin));
+        timelockCommands.add(new TimelockDay(plugin));
+        timelockCommands.add(new TimelockNight(plugin));
+        setTime = new SetTime(plugin);
     }
 
     @Override
@@ -36,11 +40,11 @@ public class CommandManager implements CommandExecutor
             {
                 if (args.length > 0)
                 {
-                    for (int i = 0; i < GetCommands().size(); i++)
+                    for (int i = 0; i < GetTrollCommands().size(); i++)
                     {
-                        if (args[0].equalsIgnoreCase(GetCommands().get(i).GetName()))
+                        if (args[0].equalsIgnoreCase(GetTrollCommands().get(i).GetName()))
                         {
-                            GetCommands().get(i).ExecuteCommand(player, args);
+                            GetTrollCommands().get(i).ExecuteCommand(player, args);
                         }
                     }
                 }
@@ -48,9 +52,9 @@ public class CommandManager implements CommandExecutor
                 {
                     player.sendMessage("Choose a option");
 
-                    for (int i = 0; i < GetCommands().size(); i++)
+                    for (int i = 0; i < GetTrollCommands().size(); i++)
                     {
-                        player.sendMessage(GetCommands().get(i).GetUsage());
+                        player.sendMessage(GetTrollCommands().get(i).GetUsage());
                     }
                 }
             }
@@ -83,15 +87,51 @@ public class CommandManager implements CommandExecutor
                             player.sendMessage("Error: Invalid input");
                         }
                     }
+                    if (cmd.getName().equalsIgnoreCase("day"))
+                    {
+                        setTime.SetDay(player);
+                        player.sendMessage("Time set to Day");
+                    }
+                    if (cmd.getName().equalsIgnoreCase("night"))
+                    {
+                        setTime.SetNight(player);
+                        player.sendMessage("Time set to Night");
+                    }
+                    if (cmd.getName().equalsIgnoreCase("timelock"))
+                    {
+                        if (args.length > 0)
+                        {
+                            for(int i = 0; i < GetTimelockCommands().size(); i++)
+                            {
+                                if (args[0].equalsIgnoreCase(GetTimelockCommands().get(i).GetName()))
+                                {
+                                    GetTimelockCommands().get(i).ExecuteCommand(player, args);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            player.sendMessage("Choose a option");
 
+                            for (int i = 0; i < GetTimelockCommands().size(); i++)
+                            {
+                                player.sendMessage(GetTimelockCommands().get(i).GetUsage());
+                            }
+                        }
+                    }
                 }
             }
         }
         return true;
     }
 
-    public ArrayList<BaseCommand> GetCommands()
+    public ArrayList<BaseCommand> GetTrollCommands()
     {
-        return commands;
+        return trollCommands;
+    }
+
+    public ArrayList<BaseCommand> GetTimelockCommands()
+    {
+        return timelockCommands;
     }
 }

@@ -9,4 +9,7 @@ commands:
     usage: /<command> <effect>
   vanish:
     description: man gone or na
-    usage: /<command> <target>
+    usage: "Usage: /<command> <target>"
+  timelock:
+    description: Lock time to Day/Night
+    usage: "Usage: /<command> [day|night]"

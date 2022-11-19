@@ -1,5 +1,6 @@
 package me.stevethepug.edwardplugin.listener;
 
+import me.stevethepug.edwardplugin.EdwardPlugin;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;

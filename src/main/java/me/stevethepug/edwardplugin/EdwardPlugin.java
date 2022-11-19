@@ -15,14 +15,22 @@ public final class EdwardPlugin extends JavaPlugin {
 
     GeneratorManager genManager = new GeneratorManager();
     public ArrayList<Player> vanishedPlayers =   new ArrayList<>();
+
+    // Just random tracking shit
+    public boolean IsTimeLockedDay = false;
+    public boolean IsTimeLockedNight = false;
+
+
     // Its gotta be enabled init
     @Override
     public void onEnable() {
         System.out.println("Yo ma drillah");
 
+
         // Add our commands yo
         this.getCommand("vanish").setExecutor(new CommandManager(this));
         this.getCommand("troll").setExecutor(new CommandManager(this));
+        this.getCommand("timelock").setExecutor(new CommandManager(this));
 
         PluginManager pm = getServer().getPluginManager();
 
