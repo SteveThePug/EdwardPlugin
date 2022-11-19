@@ -1,11 +1,17 @@
-package me.stevethepug.edwardplugin.cmd;
+package me.stevethepug.edwardplugin.cmd.troll;
 
+import me.stevethepug.edwardplugin.EdwardPlugin;
+import me.stevethepug.edwardplugin.cmd.BaseCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 
 public class Tnt extends BaseCommand
 {
+    public Tnt(EdwardPlugin instance) {
+        super(instance);
+    }
+
     @Override
     public String GetName(){return "tnt";}
     @Override

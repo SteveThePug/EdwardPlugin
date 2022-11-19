@@ -1,13 +1,14 @@
-package me.stevethepug.edwardplugin.cmd;
+package me.stevethepug.edwardplugin.cmd.timelock;
 
 import me.stevethepug.edwardplugin.EdwardPlugin;
+import me.stevethepug.edwardplugin.cmd.BaseCommand;
+import me.stevethepug.edwardplugin.cmd.SetTime;
 import org.bukkit.entity.Player;
 
 public class TimelockDay extends BaseCommand
 {
-    private EdwardPlugin plugin;
-
-    public TimelockDay(EdwardPlugin instance) {this.plugin = instance;}
+    public TimelockDay(EdwardPlugin instance) {
+        super(instance);}
     @Override
     public String GetName()
     {

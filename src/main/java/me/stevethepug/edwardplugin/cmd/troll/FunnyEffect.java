@@ -1,6 +1,7 @@
-package me.stevethepug.edwardplugin.cmd;
+package me.stevethepug.edwardplugin.cmd.troll;
 
 import me.stevethepug.edwardplugin.EdwardPlugin;
+import me.stevethepug.edwardplugin.cmd.BaseCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Particle;
@@ -11,7 +12,10 @@ public class FunnyEffect extends BaseCommand
 {
     private EdwardPlugin plugin;
 
-    public FunnyEffect(EdwardPlugin instance) {this.plugin = instance;}
+    public FunnyEffect(EdwardPlugin instance) {
+        super(instance);
+    }
+
 
     @Override
     public String GetName()

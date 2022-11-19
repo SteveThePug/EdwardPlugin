@@ -1,6 +1,14 @@
 package me.stevethepug.edwardplugin;
 
 import me.stevethepug.edwardplugin.cmd.*;
+import me.stevethepug.edwardplugin.cmd.home.HomeList;
+import me.stevethepug.edwardplugin.cmd.home.HomeRemove;
+import me.stevethepug.edwardplugin.cmd.home.HomeTp;
+import me.stevethepug.edwardplugin.cmd.home.HomeSet;
+import me.stevethepug.edwardplugin.cmd.timelock.TimelockDay;
+import me.stevethepug.edwardplugin.cmd.timelock.TimelockNight;
+import me.stevethepug.edwardplugin.cmd.troll.FunnyEffect;
+import me.stevethepug.edwardplugin.cmd.troll.Tnt;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -8,7 +16,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
-import java.util.Set;
 
 public class CommandManager implements CommandExecutor
 {
@@ -18,14 +25,19 @@ public class CommandManager implements CommandExecutor
 
     private ArrayList<BaseCommand> trollCommands = new ArrayList<>();
     private ArrayList<BaseCommand> timelockCommands = new ArrayList<>();
+    private ArrayList<BaseCommand> homeCommands = new ArrayList<>();
 
     public CommandManager(EdwardPlugin instance)
     {
         plugin = instance;
-        trollCommands.add(new Tnt());
+        trollCommands.add(new Tnt(plugin));
         trollCommands.add(new FunnyEffect(plugin));
         timelockCommands.add(new TimelockDay(plugin));
         timelockCommands.add(new TimelockNight(plugin));
+        homeCommands.add(new HomeSet(plugin));
+        homeCommands.add(new HomeTp(plugin));
+        homeCommands.add(new HomeList(plugin));
+        homeCommands.add(new HomeRemove(plugin));
         setTime = new SetTime(plugin);
     }
 
@@ -119,6 +131,28 @@ public class CommandManager implements CommandExecutor
                             }
                         }
                     }
+                    if (cmd.getName().equalsIgnoreCase("home"))
+                    {
+                        if (args.length > 0)
+                        {
+                            for (int i = 0; i < GetHomeCommands().size(); i++)
+                            {
+                                if (args[0].equalsIgnoreCase(GetHomeCommands().get(i).GetName()))
+                                {
+                                    GetHomeCommands().get(i).ExecuteCommand(player, args);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            player.sendMessage("Choose a option");
+
+                            for (int i = 0; i < GetHomeCommands().size(); i++)
+                            {
+                                player.sendMessage(GetHomeCommands().get(i).GetUsage());
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -134,4 +168,6 @@ public class CommandManager implements CommandExecutor
     {
         return timelockCommands;
     }
+
+    public ArrayList<BaseCommand> GetHomeCommands() {return homeCommands;}
 }
