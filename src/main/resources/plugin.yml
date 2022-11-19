@@ -6,10 +6,13 @@ description: Edward is an amazing individual, what an amazing man, I wish he cou
 commands:
   troll:
     description: This is going to be bare funny
-    usage: /<command> <effect>
+    usage: "Usage: /<command> <effect>"
   vanish:
     description: man gone or na
     usage: "Usage: /<command> <target>"
   timelock:
     description: Lock time to Day/Night
     usage: "Usage: /<command> [day|night]"
+  home:
+    description: Homes for players
+    usage: "Usage: /<command> [set|tp|list]"

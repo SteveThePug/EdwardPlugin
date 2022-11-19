@@ -1,9 +1,8 @@
 package me.stevethepug.edwardplugin;
 
-import me.stevethepug.edwardplugin.cmd.FunnyEffect;
-import me.stevethepug.edwardplugin.cmd.Vanish;
 import me.stevethepug.edwardplugin.listener.PlayerJoin;
 import me.stevethepug.edwardplugin.listener.WeatherEvent;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -12,7 +11,6 @@ import java.util.ArrayList;
 
 //Yo bro, this my plugin, and it all about doing funny shit too edward. Period. Bro.
 public final class EdwardPlugin extends JavaPlugin {
-
     GeneratorManager genManager = new GeneratorManager();
     public ArrayList<Player> vanishedPlayers =   new ArrayList<>();
 
@@ -31,12 +29,14 @@ public final class EdwardPlugin extends JavaPlugin {
         this.getCommand("vanish").setExecutor(new CommandManager(this));
         this.getCommand("troll").setExecutor(new CommandManager(this));
         this.getCommand("timelock").setExecutor(new CommandManager(this));
+        this.getCommand("home").setExecutor((new CommandManager(this)));
 
         PluginManager pm = getServer().getPluginManager();
 
         // Add our listeners yo
         pm.registerEvents(new PlayerJoin(this), this);
         pm.registerEvents(new WeatherEvent(), this);
+        this.saveDefaultConfig();
     }
 
     // Disabled also because we smart donnys
