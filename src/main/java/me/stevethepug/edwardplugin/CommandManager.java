@@ -1,6 +1,8 @@
 package me.stevethepug.edwardplugin;
 
+import me.stevethepug.edwardplugin.cmd.BaseCommand;
 import me.stevethepug.edwardplugin.cmd.FunnyEffect;
+import me.stevethepug.edwardplugin.cmd.Tnt;
 import me.stevethepug.edwardplugin.cmd.Vanish;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -19,7 +21,7 @@ public class CommandManager implements CommandExecutor
     public CommandManager(EdwardPlugin instance)
     {
         plugin = instance;
-        commands.add(new TntCommand());
+        commands.add(new Tnt());
         commands.add(new FunnyEffect(instance));
     }
 
@@ -81,6 +83,7 @@ public class CommandManager implements CommandExecutor
                             player.sendMessage("Error: Invalid input");
                         }
                     }
+
                 }
             }
         }
