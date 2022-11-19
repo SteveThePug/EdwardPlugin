@@ -20,7 +20,6 @@ public final class EdwardPlugin extends JavaPlugin {
         System.out.println("Yo ma drillah");
 
         // Add our commands yo
-        this.getCommand("vanish").setExecutor(new Vanish(this));
         this.getCommand("troll").setExecutor(new CommandManager(this));
 
         PluginManager pm = getServer().getPluginManager();
