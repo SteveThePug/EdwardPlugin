@@ -32,7 +32,7 @@ public class FunnyEffect extends BaseCommand
     public void ExecuteCommand(Player player, String[] args)
     {
         Location loc = player.getLocation();
-        CreateParticle(Particle.FIREWORKS_SPARK, loc, 1000, 10, 40, 200);
+        CreateParticle(Particle.FIREWORKS_SPARK, loc, 1000, 4, 10, 2000);
     }
 
     public void CreateParticle(Particle particle, Location loc, int amount, int repeat, long delay, long timer)

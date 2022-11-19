@@ -3,6 +3,7 @@ package me.stevethepug.edwardplugin;
 import me.stevethepug.edwardplugin.cmd.FunnyEffect;
 import me.stevethepug.edwardplugin.cmd.Vanish;
 import me.stevethepug.edwardplugin.listener.PlayerJoin;
+import me.stevethepug.edwardplugin.listener.WeatherEvent;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -20,13 +21,14 @@ public final class EdwardPlugin extends JavaPlugin {
         System.out.println("Yo ma drillah");
 
         // Add our commands yo
-        this.getCommand("vanish").setExecutor(new Vanish(this));
+        this.getCommand("vanish").setExecutor(new CommandManager(this));
         this.getCommand("troll").setExecutor(new CommandManager(this));
 
         PluginManager pm = getServer().getPluginManager();
 
         // Add our listeners yo
         pm.registerEvents(new PlayerJoin(this), this);
+        pm.registerEvents(new WeatherEvent(), this);
     }
 
     // Disabled also because we smart donnys
