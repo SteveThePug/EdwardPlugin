@@ -21,8 +21,6 @@ public class PlayerJoin implements Listener {
             {
                 player.hidePlayer(plugin, plugin.vanishedPlayers.get(i));
             }
-
-            Bukkit.broadcastMessage("Wagwan yute");
         }
     }
 }

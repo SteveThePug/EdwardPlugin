@@ -11,40 +11,52 @@ public class Vanish implements CommandExecutor {
     public Vanish(EdwardPlugin instance) {plugin = instance;}
     // This method is called, when somebody uses our command
     @Override
-    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if(cmd.getName().equalsIgnoreCase("vanish"))
+    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
+    {
+        if (cmd.getName().equalsIgnoreCase("vanish"))
         {
             if (sender instanceof Player)
             {
                 Player player = (Player) sender;
                 if (player.isOp())
                 {
-                    if (plugin.vanishedPlayers.contains(player))
+                    if (args.length == 0)
                     {
-                        for (Player p : Bukkit.getOnlinePlayers())
-                        {
-                            p.showPlayer(plugin, player);
-                        }
-                        plugin.vanishedPlayers.remove(player);
-                        player.sendMessage("boo nig");
+                        VanishPlayer(player);
                     }
-                    else if (!plugin.vanishedPlayers.contains(player))
+                    if (args.length == 1)
                     {
-                        for (Player p : Bukkit.getOnlinePlayers())
+                        String s = args[0];
+                        if (Bukkit.getServer().getPlayer(s) != null && Bukkit.getServer().getPlayer(s).getName().equalsIgnoreCase(s))
                         {
-                            player.hidePlayer(plugin, p);
+                            Player p = Bukkit.getPlayer(s);
+                            VanishPlayer(p);
+                        } else
+                        {
+                            player.sendMessage("Error: Invalid target");
                         }
-                        plugin.vanishedPlayers.add(player);
-                        player.sendMessage("raahted man gone");
+                    } else
+                    {
+                        player.sendMessage("Error: Invalid input");
                     }
                 }
             }
-            return true;
         }
-        if(cmd.getName().equalsIgnoreCase("funny"))
+        return true;
+    }
+    public void VanishPlayer(Player player)
+    {
+        if (plugin.vanishedPlayers.contains(player))
         {
-            return true;
+            plugin.vanishedPlayers.remove(player);
+            player.showPlayer(plugin, player);
+            player.sendMessage("boo nig");
         }
-        return false;
+        else
+        {
+            plugin.vanishedPlayers.add(player);
+            player.hidePlayer(plugin, player);
+            player.sendMessage("raahted man gone");
+        }
     }
 }
