@@ -5,9 +5,12 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.*;
 import org.bukkit.entity.Player;
 
-public class Vanish {
+public class Vanish{
     EdwardPlugin plugin;
 
+    public String GetUsage() {
+        return "/vanish";
+    }
     public Vanish(EdwardPlugin instance) {plugin = instance;}
     // This method is called, when somebody uses our command
 
