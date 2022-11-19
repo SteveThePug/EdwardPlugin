@@ -1,10 +1,10 @@
-package me.stevethepug.edwardplugin;
+package me.stevethepug.edwardplugin.cmd;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 
-public class TntCommand extends BaseCommand
+public class Tnt extends BaseCommand
 {
     @Override
     public String GetName(){return "tnt";}

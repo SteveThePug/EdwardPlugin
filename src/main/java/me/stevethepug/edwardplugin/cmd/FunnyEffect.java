@@ -1,14 +1,11 @@
 package me.stevethepug.edwardplugin.cmd;
 
-import me.stevethepug.edwardplugin.BaseCommand;
 import me.stevethepug.edwardplugin.EdwardPlugin;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.scheduler.BukkitTask;
 
 public class FunnyEffect extends BaseCommand
 {
